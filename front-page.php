@@ -53,39 +53,29 @@
       <div class="full-width-split__two">
         <div class="full-width-split__inner">
           <h2 class="headline headline--small-plus t-center">From Our Blogs</h2>
+          <?php
+            $newBlogPosts = new WP_Query(array(
+              'posts_per_page' => 3
+            ));
+
+            while ($newBlogPosts->have_posts()) {
+              $newBlogPosts->the_post(); ?>
 
           <div class="event-summary">
             <a class="event-summary__date event-summary__date--beige t-center" href="#">
-              <span class="event-summary__month">Jan</span>
-              <span class="event-summary__day">20</span>
+              <span class="event-summary__month"><?php the_time('M'); ?></span>
+              <span class="event-summary__day"><?php the_time('d'); ?></span>
             </a>
             <div class="event-summary__content">
-              <h5 class="event-summary__title headline headline--tiny"><a href="#">프롤로그: From the Basement</a></h5>
-              <p>라디오헤드에 미쳐있는 후배 녀석과 함께 작년에 Tribute 밴드를 하나 만들었습니다. 10년전에 직장 밴드 동호회에서 만난 이 친구는 일렉기타를 맛깔 나게 치는 친구였는데, 2012년 지산락페에서 <a href="#" class="nu gray">Read more</a></p>
+              <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h5>
+              <p><?php echo wp_trim_words(get_the_content(), 20); ?> <a href="<?php the_permalink(); ?>" class="nu gray">Read more</a></p>
             </div>
           </div>
-          <div class="event-summary">
-            <a class="event-summary__date event-summary__date--beige t-center" href="#">
-              <span class="event-summary__month">Feb</span>
-              <span class="event-summary__day">04</span>
-            </a>
-            <div class="event-summary__content">
-              <h5 class="event-summary__title headline headline--tiny"><a href="#">그 밴드의 시작</a></h5>
-              <p>뜻밖의 부재중 전화 2통… 예전에 알던 분으로부터 부재중 전화가 와있다.전화를 할까 말까 잠시 고민한다. 모처럼의 제주도 나홀로 여행이라 <a href="#" class="nu gray">Read more</a></p>
-            </div>
-          </div>
-          <div class="event-summary">
-            <a class="event-summary__date event-summary__date--beige t-center" href="#">
-              <span class="event-summary__month">Feb</span>
-              <span class="event-summary__day">04</span>
-            </a>
-            <div class="event-summary__content">
-              <h5 class="event-summary__title headline headline--tiny"><a href="#">처음의 음악 #1 리듬 정복</a></h5>
-              <p>정석대로라면 오선지를 마디로 나누어 1234 분석해가며 리듬 청음 연습을 해야겠지만 (청음이란 악보없이 들으면서 멜로디/화성/리듬을 악보로 적는 것을 말합니다. 아마추어가 어느 세월에 <a href="#" class="nu gray">Read more</a></p>
-            </div>
-          </div>          
 
-          <p class="t-center no-margin"><a href="#" class="btn btn--yellow">View All Blog Posts</a></p>
+          <?php } wp_reset_postdata();
+          ?>      
+
+          <p class="t-center no-margin"><a href="<?php echo site_url('/blog'); ?>" class="btn btn--yellow">View All Blog Posts</a></p>
         </div>
       </div>
     </div>
