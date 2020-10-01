@@ -10,6 +10,9 @@ function radiozapzap_files() {
 add_action('wp_enqueue_scripts', 'radiozapzap_files');
 
 function radiozapzap_features() {
+    register_nav_menu('headerMenu', 'Header Menu');
+    register_nav_menu('footerMenu1', 'Footer Menu 1');
+    register_nav_menu('footerMenu2', 'Footer Menu 2');
     add_theme_support('title-tag');
 }
 
