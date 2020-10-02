@@ -7,7 +7,7 @@
         <h2 class="headline headline--medium"><strong>radio</strong>zapzap</h2>
         <p></p>
         <h3 class="headline headline--small">아직은 뭐라고 정의하기 어려운 가내수공업 밴드</h3>
-        <a href="#" class="btn btn--large btn--blue">Learn more</a>
+        <a href="<?php echo site_url('/about-us'); ?>" class="btn btn--large btn--blue">Learn more</a>
       </div>
     </div>
 
@@ -16,36 +16,27 @@
         <div class="full-width-split__inner">
           <h2 class="headline headline--small-plus t-center">Recent Projects</h2>
 
-          <div class="event-summary">
-            <a class="event-summary__date t-center" href="#">
-              <span class="event-summary__month">Mar</span>
-              <span class="event-summary__day">25</span>
-            </a>
-            <div class="event-summary__content">
-              <h5 class="event-summary__title headline headline--tiny"><a href="#">High and Dry</a></h5>
-              <p>1995년에 발표된 라디오헤드의 The Bends 앨범 수록곡. 수년 째 커버를 하고 있지만 아직 갈 길이 멀다.<a href="#" class="nu gray">Learn more</a></p>
+          <?php 
+            $recentProjects = new WP_Query(array(
+              'posts_per_page' => 3,
+              'post_type' => 'project'
+            ));
+            
+            while ($recentProjects->have_posts()) {
+              $recentProjects->the_post(); ?>
+          
+            <div class="event-summary">
+              <a class="event-summary__date t-center" href="#">
+                <span class="event-summary__month">Mar</span>
+                <span class="event-summary__day">25</span>
+              </a>
+              <div class="event-summary__content">
+                <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+                <p><?php echo wp_trim_words(get_the_content(), 15); ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
+              </div>
             </div>
-          </div>
-          <div class="event-summary">
-            <a class="event-summary__date t-center" href="#">
-              <span class="event-summary__month">Apr</span>
-              <span class="event-summary__day">02</span>
-            </a>
-            <div class="event-summary__content">
-              <h5 class="event-summary__title headline headline--tiny"><a href="#">No Surprises</a></h5>
-              <p>1997년 OK Computer의 4번째 싱글 발표곡이다. 뮤직비디오에서 톰요크 형님의 숨넘어 갈 듯한 섬세한 표정 연기가 압권이다. <a href="#" class="nu gray">Learn more</a></p>
-            </div>
-          </div>
-          <div class="event-summary">
-            <a class="event-summary__date t-center" href="#">
-              <span class="event-summary__month">Apr</span>
-              <span class="event-summary__day">02</span>
-            </a>
-            <div class="event-summary__content">
-              <h5 class="event-summary__title headline headline--tiny"><a href="#">Fake Plastic Trees</a></h5>
-              <p>1995년 The Bends 앨범 수록곡. 짭짭을 모토로하는 라디오짭짭의 정신세계를 노래한 듯 하다.<a href="#" class="nu gray">Learn more</a></p>
-            </div>
-          </div>          
+
+            <?php } ?>      
 
           <p class="t-center no-margin"><a href="#" class="btn btn--blue">View All Projects</a></p>
         </div>
