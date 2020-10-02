@@ -19,10 +19,10 @@
             <p>
                 <a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link('project'); ?>">
                 <i class="fa fa-home" aria-hidden="true"></i> Project Home</a> 
-                <span class="metabox__main"><?php the_title(); ?></span>
+                <span class="metabox__main"><?php the_title(); ?> (Current Status : <?php the_field('project_status'); ?>)</span>
             </p>
         </div>    
-
+        
         <div class="generic-content"><?php the_content() ?></div>
     </div>
 
