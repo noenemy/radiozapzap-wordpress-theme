@@ -7,7 +7,7 @@ This file should be placed in /wp-content/mu-plugins folder.
 function radiozapzap_post_types() {
     register_post_type('project', array(
         'show_in_rest' => true,
-        'supports' => array('title', 'editor', 'excerpt'),
+        'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
         'rewrite' => array('slug' => 'projects'),
         'has_archive' => true,
         'public' => true,

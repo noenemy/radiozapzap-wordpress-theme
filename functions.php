@@ -14,8 +14,17 @@ function radiozapzap_features() {
     register_nav_menu('footerMenu1', 'Footer Menu 1');
     register_nav_menu('footerMenu2', 'Footer Menu 2');
     add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
+    add_image_size('pageBanner', 1500, 350, true);
 }
 
 add_action('after_setup_theme', 'radiozapzap_features');
 
+function radiozapzap_adjust_queries($query) {
+    if (!is_admin() AND is_post_type_archive('project') AND $query->is_main_query()) {
+        $query->set('posts_per_page', '10');
+    }
+}
+
+add_action('pre_get_posts', 'radiozapzap_adjust_queries');
 ?>
