@@ -1,23 +1,11 @@
 <?php
 
-    get_header(); ?>
-
-    <div class="page-banner">
-        <div class="page-banner__bg-image" style="background-image: url(
-            <?php $pageBannerImage = get_field('page_banner_background_image');
-            if ($pageBannerImage) {
-                echo $pageBannerImage['sizes']['pageBanner'];
-            } else {
-                echo get_theme_file_uri('/images/stage.jpg');
-            } ?>
-        );"></div>
-        <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title">Welcome to our blog!</h1>
-        <div class="page-banner__intro">
-            <p><?php the_field('page_banner_subtitle'); ?></p>
-        </div>
-        </div>  
-    </div>
+    get_header(); 
+    pageBanner(array(
+        'title' => 'Welcome to our blog!',
+        'subtitle' => '낙서가 글이 되는 공간'
+    ));
+    ?>
 
     <div class="container container--narrow page-section">
     <?php 
