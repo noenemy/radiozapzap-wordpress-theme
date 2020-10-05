@@ -36,7 +36,7 @@ jQuery(document).ready(function( $ ) {
                     resultsDiv.html('<div class="spinner-loader"></div>');
                     isSpinnerVisible = true;
                 }
-                typingTimer = setTimeout(getResults(), 2000);
+                typingTimer = setTimeout(() => getResults(), 1000);
             } else {
                 resultsDiv.html("");
                 isSpinnerVisible = false;
@@ -47,13 +47,21 @@ jQuery(document).ready(function( $ ) {
     };
 
     function getResults() {
-        $.getJSON(radiozapzapData.root_url + "/wp-json/wp/v2/posts?search=" + searchField.val(), function (posts) {
-            resultsDiv.html(`
-                <h2 class="search-overlay__section-title">General Information</h2>
-                ${posts.length ? '<ul class-"link-list min-list">' : '<p>검색 결과 없음</p>'}
-                    ${posts.map(item => `<li><a href="${item.link}">${item.title.rendered}</li>`).join('')}
-                ${posts.length ? '</ul>' : ''}
-            `);
+        $.when(
+            $.getJSON(radiozapzapData.root_url + "/wp-json/wp/v2/posts?search=" + searchField.val()), 
+            $.getJSON(radiozapzapData.root_url + "/wp-json/wp/v2/pages?search=" + searchField.val())
+            ).then((posts, pages) => {
+                var combinedResult = posts[0].concat(pages[0]);
+                resultsDiv.html(`
+                    <h2 class="search-overlay__section-title">General Information</h2>
+                    ${combinedResult.length ? '<ul class-"link-list min-list">' : '<p>검색 결과 없음</p>'}
+                    ${combinedResult.map(item => `<li><a href="${item.link}">${item.title.rendered}</a>
+                    ${item.type == 'post' ? `by ${item.authorName}` : ''} </li>`).join('')}
+                    ${combinedResult.length ? '</ul>' : ''}
+                `);
+                isSpinnerVisible = false;
+        }, () => {
+            this.resultsDiv.html("<p>Unexpected error; please try again.</p>")
         });
     }
 
@@ -70,6 +78,9 @@ jQuery(document).ready(function( $ ) {
     function openOverlay() {
         searchOverlay.addClass("search-overlay--active");
         $("body").addClass("body-no-scroll");
+        searchField.val('');
+        setTimeout(() => searchField.focus(), 301);
+        searchField.focus();
         isOverlayOpen = true;
     };
 
