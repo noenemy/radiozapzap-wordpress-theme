@@ -47,21 +47,26 @@ jQuery(document).ready(function( $ ) {
     };
 
     function getResults() {
-        $.when(
-            $.getJSON(radiozapzapData.root_url + "/wp-json/wp/v2/posts?search=" + searchField.val()), 
-            $.getJSON(radiozapzapData.root_url + "/wp-json/wp/v2/pages?search=" + searchField.val())
-            ).then((posts, pages) => {
-                var combinedResult = posts[0].concat(pages[0]);
-                resultsDiv.html(`
-                    <h2 class="search-overlay__section-title">General Information</h2>
-                    ${combinedResult.length ? '<ul class-"link-list min-list">' : '<p>검색 결과 없음</p>'}
-                    ${combinedResult.map(item => `<li><a href="${item.link}">${item.title.rendered}</a>
-                    ${item.type == 'post' ? `by ${item.authorName}` : ''} </li>`).join('')}
-                    ${combinedResult.length ? '</ul>' : ''}
-                `);
-                isSpinnerVisible = false;
-        }, () => {
-            this.resultsDiv.html("<p>Unexpected error; please try again.</p>")
+
+        $.getJSON(radiozapzapData.root_url + "/wp-json/radiozapzap/v1/search?keyword=" + searchField.val(), (results) => {
+            resultsDiv.html(`
+                <div class="row">
+                    <div class="one-third">
+                        <h2 class="search-overlay__section-title">General Information</h2>
+                        ${results.generalInfo.length ? '<ul class-"link-list min-list">' : '<p>검색 결과 없음</p>'}
+                        ${results.generalInfo.map(item => `<li><a href="${item.permalink}">${item.title}</a>
+                        ${item.postType == "post" ? `by ${item.authorName}` : ''}</li>`).join('')}
+                        ${results.generalInfo.length ? '</ul>' : ''}                        
+                    </div>
+                    <div class="one-third">
+                        <h2 class="search-overlay__section-title">Projects</h2>
+                        ${results.projects.length ? '<ul class-"link-list min-list">' : '<p>검색 결과 없음</p>'}
+                        ${results.projects.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+                        ${results.projects.length ? '</ul>' : ''}                               
+                    </div>
+                </div>
+            `);
+            isSpinnerVisible = false;
         });
     }
 
