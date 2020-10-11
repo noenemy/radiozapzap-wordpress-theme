@@ -79,6 +79,7 @@ function radiozapzap_video_embed_html( $html ) {
   
     return '<div class="video-container">' . $html . '</div>';
   }
-  add_filter( 'embed_oembed_html', 'radiozapzap_video_embed_html', 10, 3 );
-  add_filter( 'video_embed_html', 'radiozapzap_video_embed_html' );
+
+add_filter('embed_oembed_html', 'radiozapzap_video_embed_html', 10, 4);
+add_filter('video_embed_html', 'radiozapzap_video_embed_html');
 ?>
