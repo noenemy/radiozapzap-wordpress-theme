@@ -31,7 +31,7 @@
             wp_reset_postdata();
             ?>      
 
-          <p class="t-center no-margin"><a href="<?php echo get_post_type_archive_link('project'); ?>" class="btn btn--blue">View All Projects</a></p>
+          <p class="t-center no-margin"><a href="<?php echo get_post_type_archive_link('project'); ?>" class="btn btn--medium btn--blue">View All Projects</a></p>
         </div>
       </div>
       <div class="full-width-split__two">
@@ -51,7 +51,7 @@
             wp_reset_postdata();
             ?>     
 
-          <p class="t-center no-margin"><a href="<?php echo site_url('/blog'); ?>" class="btn btn--yellow">View All Blog Posts</a></p>
+          <p class="t-center no-margin"><a href="<?php echo site_url('/blog'); ?>" class="btn btn--medium btn--yellow">View All Blog Posts</a></p>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
               <div class="hero-slider__overlay">
                 <h2 class="headline headline--medium t-center">Radiohead Tribute Band</h2>
                 <p class="t-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p class="t-center no-margin"><a href="#" class="btn btn--blue">Learn more</a></p>
+                <p class="t-center no-margin"><a href="#" class="btn btn--medium btn--blue">Learn more</a></p>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
               <div class="hero-slider__overlay">
                 <h2 class="headline headline--medium t-center">Home Recording</h2>
                 <p class="t-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p class="t-center no-margin"><a href="#" class="btn btn--blue">Learn more</a></p>
+                <p class="t-center no-margin"><a href="#" class="btn btn--medium btn--blue">Learn more</a></p>
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@
               <div class="hero-slider__overlay">
                 <h2 class="headline headline--medium t-center">Live Streaming</h2>
                 <p class="t-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p class="t-center no-margin"><a href="#" class="btn btn--blue">Learn more</a></p>
+                <p class="t-center no-margin"><a href="#" class="btn btn--medium btn--blue">Learn more</a></p>
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
               <div class="hero-slider__overlay">
                 <h2 class="headline headline--medium t-center">Team Blogging</h2>
                 <p class="t-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p class="t-center no-margin"><a href="#" class="btn btn--blue">Learn more</a></p>
+                <p class="t-center no-margin"><a href="#" class="btn btn--medium btn--blue">Learn more</a></p>
               </div>
             </div>
           </div>          

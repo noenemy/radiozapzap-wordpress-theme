@@ -10,15 +10,13 @@
             <p>
                 <a class="metabox__blog-home-link" href="<?php echo site_url('/blog'); ?>">
                 <i class="fa fa-home" aria-hidden="true"></i> Blog Home</a> 
-                <span class="metabox__main">Posted by <?php the_author_posts_link(); ?> on <?php the_time('n.j.y'); ?> in <?php echo get_the_category_list(', '); ?></span>
+                <span class="metabox__main">by <?php the_author_posts_link(); ?> | <?php the_time('M d, Y'); ?></span>
             </p>
         </div>
 
         <div class="generic-content"><?php the_content() ?></div>
 
         <?php
-        /** @var string|false|WP_Error $tag_list */
-        //$tag_list = get_the_tag_list( '<ul class="tag_keyword"><li>', '</li><li>', '</li></ul>' );
         $tag_list = get_the_tag_list( '<p><span class="tag-button">', '</span><span class="tag-button">', '</span></p>' );
         
         if ( $tag_list && ! is_wp_error( $tag_list ) ) {
