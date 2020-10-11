@@ -2,7 +2,7 @@
       <div class="site-footer__inner container container--narrow">
         <div class="group">
           <div class="site-footer__col-one">
-            <h1 class="school-logo-text school-logo-text--alt-color">
+            <h1 class="radiozapzap-logo-text radiozapzap-logo-text--alt-color">
               <a href="#"><strong>radio</strong>zapzap</a>
             </h1>
             <p><a class="site-footer__link" href="#">555.555.5555</a></p>
